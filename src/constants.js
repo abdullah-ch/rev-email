@@ -1,0 +1,1 @@
+export const RIVE_FILE_PATH = "https://unpkg.com/@rive-app/canvas-advanced@2.19.7/rive.wasm";

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import RiveCanvas from "@rive-app/canvas-advanced";
 import { registerRiveListeners } from "../components/RevMail/revMail.util";
+import { RIVE_FILE_PATH } from "../constants";
 
 export const useRevMail = () => {
   const canvasRef = useRef(null);
@@ -12,8 +13,7 @@ export const useRevMail = () => {
   useEffect(() => {
     async function loadRiveAnimation() {
       const rive = await RiveCanvas({
-        locateFile: () =>
-          `https://unpkg.com/@rive-app/canvas-advanced@2.19.7/rive.wasm`,
+        locateFile: () => RIVE_FILE_PATH
       });
 
       const canvas = canvasRef.current;
