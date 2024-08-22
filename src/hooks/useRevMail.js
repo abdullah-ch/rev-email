@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import RiveCanvas from "@rive-app/canvas-advanced";
 import { registerRiveListeners } from "../components/RevMail/revMail.util";
 import { RIVE_FILE_PATH } from "../constants";
+import { isEmailValid } from "../utils";
 
 export const useRevMail = () => {
   const canvasRef = useRef(null);
@@ -48,6 +49,10 @@ export const useRevMail = () => {
       setupListeners(artboard, stateMachineInstance);
 
       const textInput = artboard.textRun("txtMailInput");
+
+      console.log({
+        textInput
+      })
       if (!textInput) {
         console.error("Text input 'txtMailInput' not found on the artboard");
         return;
@@ -127,12 +132,21 @@ export const useRevMail = () => {
       startRenderLoop();
     }
     function handleKeyDown(event) {
+      console.log({
+        event
+      })
       let newText = inputText;
+
+     
       if (event.key.length === 1) {
         newText += event.key;
       } else if (event.key === "Backspace") {
         newText = newText.slice(0, -1);
       }
+
+      console.log({
+        newText
+      })
       setInputText(newText);
     }
 
@@ -142,8 +156,20 @@ export const useRevMail = () => {
     };
   }, [inputText]);
 
+  console.log({
+    inputText
+  })
   const onSubmit = () => {
-    console.log("Submit");
+  const isEmail= isEmailValid(inputText);
+  console.log({
+    isEmail,
+    inputText
+  });
+
+  if(!isEmail){
+   return  alert("Please enter a valid email address");
+  }
+   
   };
 
   return {

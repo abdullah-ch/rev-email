@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@rive-app/canvas-advanced": "^2.19.7",
+    "email-validator": "^2.0.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
